@@ -36,3 +36,7 @@ jobs:
         run: terraform validate
       - name: terraform plan
         run: terraform plan -out=tfplan
+      - name: select workspace
+        run: terraform workspace select dev || terraform workspace new dev
+      - name: terraform apply
+        run: terraform apply -auto-approve
