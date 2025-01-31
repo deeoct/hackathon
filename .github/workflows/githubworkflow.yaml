@@ -1,0 +1,21 @@
+name: Hackathon test
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write # Enable OIDC token request      
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::825765394891:role/oidc_connect_role
+          aws-region: ap-south-1
+      - name: Test aws access
+        run: aws sts get-caller-identity
