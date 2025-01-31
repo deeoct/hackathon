@@ -1,8 +1,9 @@
 name: Hackathon test
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  #push:
+   # branches:
+    #  - main
 permissions:
   id-token: write # Enable OIDC token request      
   contents: read
@@ -17,5 +18,5 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::825765394891:role/oidc_connect_role
           aws-region: ap-south-1
-      - name: Test aws access
-        run: aws sts get-caller-identity
+     # - name: Test aws access
+      #  run: aws sts get-caller-identity
